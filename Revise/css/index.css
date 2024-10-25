@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.search-bar {
+  margin-left: auto;
+}
+
+.search-bar input[type="text"] {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.links {
+  margin-top: 20px;
+  position: relative;
+}
+
+.links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Make specific links bold */
+.links a[href="patient_login.php"],
+.links a[href="doctor_login.php"],
+.links a[href="admin_login.php"] {
+  font-weight: bold;
+}
+
+.search-bar-behind {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(100% + 10px);
+}
+
+.topnav {
+  background-color: #c7dceb; /* Light blue */
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.topnav a {
+  float: left;
+  color: #333; /* Dark gray */
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd; /* Light gray */
+  color: #555; /* Slightly darker gray */
+}
+
+.topnav a.active {
+  background-color: #a8c2d9; /* Light blue, slightly darker than the background */
+  color: #333; /* Dark gray */
+}
