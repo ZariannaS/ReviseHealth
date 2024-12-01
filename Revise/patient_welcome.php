@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+// Include session.php to make sure session variables are set
+require_once('session.php');
+include 'Chatbot.html';
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

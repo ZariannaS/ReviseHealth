@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Chatbot</title>
+    <style>
+        /* Basic styling for the chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #f9f9f9;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-header {
+            background-color: #0078D7;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .user-message {
+            text-align: right;
+        }
+
+        .bot-message {
+            text-align: left;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chat-input button {
+            margin-left: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #0078D7;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chatbot-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/ICON.png" alt="Chatbot Icon" id="chatbot-icon" class="chatbot-icon">
+
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chat-header">Chatbot</div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('chatbot-icon').addEventListener('click', function () {
+            const chatbotContainer = document.getElementById('chatbot-container');
+            chatbotContainer.style.display = chatbotContainer.style.display === 'none' || chatbotContainer.style.display === '' ? 'flex' : 'none';
+        });
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const chatMessages = document.getElementById('chat-messages');
+            const userMessage = userInput.value.trim();
+
+            if (!userMessage) return;
+
+            const userDiv = document.createElement('div');
+            userDiv.className = 'user-message';
+            userDiv.textContent = userMessage;
+            chatMessages.appendChild(userDiv);
+            userInput.value = '';
+
+            const chatbotResponses = {
+                greeting: "Hello! How can I assist you today?",
+                services: "We offer the following services: Detox, Therapy, and Outpatient care.",
+                appointment: "To book an appointment, navigate to the appointment tab.",
+                contact: "You can reach us at (555) 123-4567 or ReviseHealth@gmail.com.",
+                hours: "Our hours are Monday to Friday, 8am to 5pm.",
+                insurance: "We accept most insurance plans. Please contact your provider.",
+                emergency: "Call 911 for emergencies or our hotline: (555) 987-6543.",
+                default: "I'm sorry, I didn't understand that. Can you rephrase?"
+            };
+
+            let botResponse;
+    if (userMessage.toLowerCase().includes("hello") || userMessage.toLowerCase().includes("hi")) {
+        botResponse = chatbotResponses.greeting;
+    } else if (userMessage.toLowerCase().includes("services")) {
+        botResponse = chatbotResponses.services;
+    } else if (userMessage.toLowerCase().includes("appointment")) {
+        botResponse = chatbotResponses.appointment;
+    } else if (userMessage.toLowerCase().includes("contact")) {
+        botResponse = chatbotResponses.contact;
+    } else if (userMessage.toLowerCase().includes("hours")) {
+        botResponse = chatbotResponses.hours;
+    } else if (userMessage.toLowerCase().includes("insurance")) {
+        botResponse = chatbotResponses.insurance;
+    } else if (userMessage.toLowerCase().includes("emergency")) {
+        botResponse = chatbotResponses.emergency;
+    } else {
+        botResponse = chatbotResponses.default;
+    }
+
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'bot-message';
+                botDiv.textContent = botResponse;
+                chatMessages.appendChild(botDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
